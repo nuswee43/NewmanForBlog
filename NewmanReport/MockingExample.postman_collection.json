@@ -1,0 +1,288 @@
+{
+	"info": {
+		"_postman_id": "5a8dae68-3c79-4129-81d8-38b9460c8db0",
+		"name": "MockingExample",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "View Profile",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "106153b5-dbc4-4e15-b576-6d3061d8f3ff",
+						"exec": [
+							"tests[\"status code have 200\"] =  pm.response.to.have.status(200)",
+							"tests[\"body has userId\"] = responseBody.has(\"userId\")",
+							"tests[\"body has firstName\"] = responseBody.has(\"firstName\")",
+							"tests[\"body has lastName\"] = responseBody.has(\"lastName\")",
+							"tests[\"body has phoneNumber\"] = responseBody.has(\"phoneNumber\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/profile/id=1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"profile",
+						"id=1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "View Profile 200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/profile/id=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"profile",
+								"id=1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n\t\"userId\":1,\n\t\"firstName\":\"Tomus\",\n\t\"lastName\":\"Adison\",\n\t\"phoneNumber\":\"0800000000\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Register Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "31b04bf9-acca-4ac9-9b68-84574687cda3",
+						"exec": [
+							"tests[\"status code have 201\"] =  pm.response.to.have.status(201)",
+							"tests[\"message is success\"] = responseBody.has(\"success\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\":\"Tomus\",\n\t\"lastName\":\"Adison\",\n\t\"phoneNumber\":\"0800000000\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Register Account 201",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\":\"Tomus\",\n\t\"lastName\":\"Adison\",\n\t\"phoneNumber\":\"0800000000\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n\t\"message\": \"success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Register Account Fail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "31b04bf9-acca-4ac9-9b68-84574687cda3",
+						"exec": [
+							"tests[\"status code have 400\"] =  pm.response.to.have.status(400)",
+							"tests[\"message is Bad Request\"] = responseBody.has(\"Bad Request\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\":\"Tomus\",\n\t\"lastName\":\"Adison\",\n\t\"phoneNumber\":\"0800000000\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/register400",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"register400"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Register Account 400",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\":\"Tomus\",\n\t\"lastName\":\"Adison\",\n\t\"phoneNumber\":\"0800000000\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/register400",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"register400"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n\t\"message\": \"User Existed\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bf6d20b6-630b-4000-9e81-2e8c7fe12b48",
+						"exec": [
+							"tests[\"status code have 200\"] =  pm.response.to.have.status(200)",
+							"tests[\"message is success\"] = responseBody.has(\"success\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/removeAccount/id=1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"removeAccount",
+						"id=1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete Account 200",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/removeAccount/id=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"removeAccount",
+								"id=1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n\t\"message\": \"success\"\n}"
+				}
+			]
+		}
+	]
+}
